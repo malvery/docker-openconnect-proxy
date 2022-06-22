@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  openconnect-proxy:
+    build: build
+    privileged: true
+    network_mode: "host"
+    volumes: 
+      - ./vpn.config:/etc/openconnect/config:ro
+    environment:
+      - HTTP_SOCKS5_PROXY_PORT
+    ports:
+      - 127.0.0.1:{HTTP_SOCKS5_PROXY_PORT}:{HTTP_SOCKS5_PROXY_PORT}
