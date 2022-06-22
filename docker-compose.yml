@@ -1,13 +1,22 @@
 version: "3"
 
+networks:
+  vpn:
+    ipam:
+      config:
+        - subnet: ${HOST_SUBNET}
+
 services:
   openconnect-proxy:
     build: build
     privileged: true
-    network_mode: "host"
+    hostname: "nbubnt185"
+    networks:
+      vpn:
+        ipv4_address: ${HOST_IPV4_ADDR}
     volumes: 
       - ./vpn.config:/etc/openconnect/config:ro
     environment:
       - HTTP_SOCKS5_PROXY_PORT
     ports:
-      - 127.0.0.1:{HTTP_SOCKS5_PROXY_PORT}:{HTTP_SOCKS5_PROXY_PORT}
+      - 127.0.0.1:${HTTP_SOCKS5_PROXY_PORT}:${HTTP_SOCKS5_PROXY_PORT}
