@@ -10,7 +10,6 @@ services:
   openconnect-proxy:
     build: build
     privileged: true
-    hostname: "nbubnt185"
     networks:
       vpn:
         ipv4_address: ${HOST_IPV4_ADDR}
