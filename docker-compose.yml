@@ -15,7 +15,7 @@ services:
       vpn:
         ipv4_address: ${HOST_IPV4_ADDR}
     volumes: 
-      - ./vpn.config:/etc/openconnect/config:ro
+      - ~/.openconnect/config:/etc/openconnect/config:ro
     environment:
       - HTTP_SOCKS5_PROXY_PORT
     ports:
